@@ -193,9 +193,42 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "Классик", size: "80x80x40", price: "7 990", color: "Серый" },
-              { name: "Макси", size: "100x100x45", price: "9 990", color: "Бежевый" },
-              { name: "Компакт", size: "70x70x35", price: "6 990", color: "Коричневый" },
+              { 
+                name: "Классик", 
+                dimensions: {
+                  width: 80,
+                  depth: 70, 
+                  height: 45
+                },
+                weight: "3.5 кг",
+                price: "7 990", 
+                color: "Серый",
+                description: "Стандартный размер для большинства интерьеров"
+              },
+              { 
+                name: "Макси", 
+                dimensions: {
+                  width: 90,
+                  depth: 80,
+                  height: 50
+                },
+                weight: "4.2 кг", 
+                price: "9 990", 
+                color: "Бежевый",
+                description: "Увеличенный размер для максимального комфорта"
+              },
+              { 
+                name: "Компакт", 
+                dimensions: {
+                  width: 70,
+                  depth: 60,
+                  height: 40
+                },
+                weight: "2.8 кг", 
+                price: "6 990", 
+                color: "Коричневый",
+                description: "Компактное решение для небольших помещений"
+              },
             ].map((product, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="aspect-square bg-gradient-to-br from-muted to-accent/20 flex items-center justify-center">
@@ -203,16 +236,27 @@ const Index = () => {
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                  <div className="space-y-2 mb-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Размер:</span>
-                      <span>{product.size} см</span>
+                  <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div>
+                      <span className="text-sm font-medium text-muted-foreground">Габариты (Ш×Г×В):</span>
+                      <div className="text-sm font-medium">
+                        {product.dimensions.width}×{product.dimensions.depth}×{product.dimensions.height} см
+                      </div>
                     </div>
+                    
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Вес:</span>
+                      <span className="font-medium">{product.weight}</span>
+                    </div>
+                    
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Цвет:</span>
-                      <span>{product.color}</span>
+                      <span className="font-medium">{product.color}</span>
                     </div>
                   </div>
+                  
                   <div className="flex items-center justify-between">
                     <div className="text-2xl font-bold text-primary">{product.price} ₽</div>
                     <Button size="sm">
